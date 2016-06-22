@@ -36,7 +36,7 @@ import io                           # = creating a String or Byte Array of data 
     #Global Variable Initialization and Definitions
 
 #Serial Variables
-port = "COM25"              #This is a computer dependent setting. Open Device Manager to determine which port the RFD900 Modem is plugged into
+port = "COM22"              #This is a computer dependent setting. Open Device Manager to determine which port the RFD900 Modem is plugged into
 baud = 38400
 timeout = 3                 #Sets the ser.read() timeout period, or when to continue in the code when no data is received after the timeout period (in seconds)
 
@@ -620,7 +620,7 @@ def enable_camera_c():
     timecheck = time.time()
     return
 '''
-
+'''
 def run_ISO_test():
     ser.write('c')
     while (ser.read() != 'A'):
@@ -628,15 +628,23 @@ def run_ISO_test():
         ser.write('c')
     timecheck = time.time()
     return
+'''
 
-def enable_camera_d():
-    ser.write('d')
+def decrease_wordlength():
+    ser.write('b')
     while (ser.read() != 'A'):
         print 'Waiting for Acknowledge'
-        ser.write('d')
+        ser.write('b')
     timecheck = time.time()
     return
 
+def increase_wordlength():
+    ser.write('c')
+    while (ser.read() != 'A'):
+        print 'Waiting for Acknowledge'
+        ser.write('c')
+    timecheck = time.time()
+    return
 
 #class Unbuffered:
 #    def __init__(self,stream):
@@ -851,7 +859,6 @@ select_label = Label(master = cam_select, font = "Verdana 10 bold", text = 'Came
 select_label.grid(row = 0, columnspan = 2, padx = 30)
 
 # radio buttons
-'''
 a_button = Radiobutton(master = cam_select, text = 'Camera A', value = 1, bg = 'light gray',
                        indicatoron = 0, command = enable_camera_a)
 a_button.grid(row = 1, padx = 30)
@@ -859,15 +866,15 @@ a_button.grid(row = 1, padx = 30)
 b_button = Radiobutton(master = cam_select, text = 'Camera B', value = 2, bg = 'light gray',
                        indicatoron = 0, command = enable_camera_b)
 b_button.grid(row = 2, padx = 30)
-'''
-c_button = Radiobutton(master = cam_select, text = 'ISO test', value = 3, bg = 'light gray',
-                       indicatoron = 0, command = run_ISO_test)
+
+c_button = Radiobutton(master = cam_select, text = 'Inc. WL', value = 3, bg = 'light gray',
+                       indicatoron = 0, command = increase_wordlength)
 c_button.grid(row = 1, column = 1, padx = 30)
-'''
-d_button = Radiobutton(master = cam_select, text = 'Camera D', value = 4, bg = 'light gray',
-                       indicatoron = 0, command = enable_camera_d)
+
+d_button = Radiobutton(master = cam_select, text = 'Dec. WL', value = 4, bg = 'light gray',
+                       indicatoron = 0, command = decrease_wordlength)
 d_button.grid(row = 2, column = 1, padx =30)
-'''
+
 # END -----  camera enable/mux options and commands  -----
 
 #-------------------------------------------
