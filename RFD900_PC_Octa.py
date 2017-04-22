@@ -36,7 +36,7 @@ import io                           # = creating a String or Byte Array of data 
     #Global Variable Initialization and Definitions
 
 #Serial Variables
-port = "COM32"              #This is a computer dependent setting. Open Device Manager to determine which port the RFD900 Modem is plugged into
+port = "COM18"              #This is a computer dependent setting. Open Device Manager to determine which port the RFD900 Modem is plugged into
 baud = 38400
 timeout = 3                 #Sets the ser.read() timeout period, or when to continue in the code when no data is received after the timeout period (in seconds)
 
@@ -595,7 +595,7 @@ def cmd7():
     sys.stdout.flush()
     return
 
-def enable_camera_a():
+def enable_camera_1():
     ser.write('8')
     while (ser.read() != 'A'):
         print 'Waiting for Acknowledge'
@@ -603,7 +603,7 @@ def enable_camera_a():
     timecheck = time.time()
     return
 
-def enable_camera_b():
+def enable_camera_2():
     ser.write('9')
     while (ser.read() != 'A'):
         print 'Waiting for Acknowledge'
@@ -611,7 +611,7 @@ def enable_camera_b():
     timecheck = time.time()
     return
 
-def enable_camera_c():
+def enable_camera_3():
     ser.write('c')
     while (ser.read() != 'A'):
         print 'Waiting for Acknowledge'
@@ -619,7 +619,7 @@ def enable_camera_c():
     timecheck = time.time()
     return
 
-def enable_camera_d():
+def enable_camera_4():
     ser.write('d')
     while (ser.read() != 'A'):
         print 'Waiting for Acknowledge'
@@ -627,6 +627,37 @@ def enable_camera_d():
     timecheck = time.time()
     return
 
+def enable_camera_5():
+    ser.write('e')
+    while (ser.read() != 'A'):
+        print 'Waiting for Acknowledge'
+        ser.write('d')
+    timecheck = time.time()
+    return
+
+def enable_camera_6():
+    ser.write('f')
+    while (ser.read() != 'A'):
+        print 'Waiting for Acknowledge'
+        ser.write('d')
+    timecheck = time.time()
+    return
+
+def enable_camera_7():
+    ser.write('g')
+    while (ser.read() != 'A'):
+        print 'Waiting for Acknowledge'
+        ser.write('d')
+    timecheck = time.time()
+    return
+
+def enable_camera_8():
+    ser.write('h')
+    while (ser.read() != 'A'):
+        print 'Waiting for Acknowledge'
+        ser.write('d')
+    timecheck = time.time()
+    return
 
 #class Unbuffered:
 #    def __init__(self,stream):
@@ -826,37 +857,45 @@ conbutton.place(x=25,y=490)
 #-------------------------------------------
     #Cmd 7 - Gui setup for raspberry runtime file retrieval
 
-#pirunbutton = Button(mGui,text = "Download Pi Runtime Data",command = cmd7,borderwidth = 2,font = "Verdana 10",width = 25)
-#pirunbutton.place(x=25,y=520)
+pirunbutton = Button(mGui,text = "Download Pi Runtime Data",command = cmd7,borderwidth = 2,font = "Verdana 10",width = 25)
+pirunbutton.place(x=25,y=520)
 
 
 # -----  camera select GUI parts  ---------  camera enable/mux options  -----
 
-'''
+
 #          camera selection gui config
-cam_select = Frame(mGui, height = 80, width = 290, background = "light gray", borderwidth = 3)
+cam_select = Frame(mGui, height = 80, width = 300, background = "light gray", borderwidth = 4)
 cam_select.place(x = 1005, y = 445)
 select_label = Label(master = cam_select, font = "Verdana 10 bold", text = 'Camera Select:')
 #select_label.place(x = 20, y = 2)
 select_label.grid(row = 0, columnspan = 2, padx = 30)
 
 # radio buttons
-a_button = Radiobutton(master = cam_select, text = 'Camera A', value = 1, bg = 'light gray',
-                       indicatoron = 0, command = enable_camera_a)
-a_button.grid(row = 1, padx = 30)
+a_button = Radiobutton(master = cam_select, text = 'Camera 1', value = 1, bg = 'light gray',
+                       indicatoron = 0, command = enable_camera_1)
+a_button.grid(row = 1, padx = 10)
 
-b_button = Radiobutton(master = cam_select, text = 'Camera B', value = 2, bg = 'light gray',
-                       indicatoron = 0, command = enable_camera_b)
-b_button.grid(row = 2, padx = 30)
+b_button = Radiobutton(master = cam_select, text = 'Camera 2', value = 2, bg = 'light gray',
+                       indicatoron = 0, command = enable_camera_2)
+b_button.grid(row = 2, padx = 10)
 
-c_button = Radiobutton(master = cam_select, text = 'Camera C', value = 3, bg = 'light gray',
-                       indicatoron = 0, command = enable_camera_c)
-c_button.grid(row = 1, column = 1, padx = 30)
+c_button = Radiobutton(master = cam_select, text = 'Camera 3', value = 3, bg = 'light gray',
+                       indicatoron = 0, command = enable_camera_3)
+c_button.grid(row = 1, column = 1, padx = 10)
 
-d_button = Radiobutton(master = cam_select, text = 'Camera D', value = 4, bg = 'light gray',
-                       indicatoron = 0, command = enable_camera_d)
-d_button.grid(row = 2, column = 1, padx =30)
-'''
+d_button = Radiobutton(master = cam_select, text = 'Camera 4', value = 4, bg = 'light gray',
+                       indicatoron = 0, command = enable_camera_4)
+d_button.grid(row = 2, column = 1, padx =10)
+
+e_button = Radiobutton(master = cam_select, text = 'Camera 5', value = 3, bg = 'light gray',
+                       indicatoron = 0, command = enable_camera_5)
+e_button.grid(row = 1, column = 2, padx = 10)
+
+f_button = Radiobutton(master = cam_select, text = 'Camera 6', value = 4, bg = 'light gray',
+                       indicatoron = 0, command = enable_camera_6)
+f_button.grid(row = 2, column = 2, padx =10)
+
 # END -----  camera enable/mux options and commands  -----
 
 #-------------------------------------------

@@ -36,7 +36,7 @@ import io                           # = creating a String or Byte Array of data 
     #Global Variable Initialization and Definitions
 
 #Serial Variables
-port = "COM28"              #This is a computer dependent setting. Open Device Manager to determine which port the RFD900 Modem is plugged into
+port = "COM29"              #This is a computer dependent setting. Open Device Manager to determine which port the RFD900 Modem is plugged into
 baud = 38400
 timeout = 3                 #Sets the ser.read() timeout period, or when to continue in the code when no data is received after the timeout period (in seconds)
 
